@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+
+<autocomplete>
+  <url_template>http://api.netflix.com/catalog/titles/autocomplete?{-join|&amp;|term}</url_template>
+  <autocomplete_item>
+    <title short="Love Wrecked"></title>
+  </autocomplete_item>
+  <autocomplete_item>
+    <title short="Lovesickness"></title>
+  </autocomplete_item>
+  <autocomplete_item>
+    <title short="Loverboy"></title>
+  </autocomplete_item>
+</autocomplete>
+
