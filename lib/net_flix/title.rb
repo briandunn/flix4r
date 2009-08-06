@@ -28,8 +28,7 @@ module NetFlix
     class << self
 
       def search(params)
-        data = NetFlix::API::Catalog::Titles.search(params)
-        TitleBuilder.from_xml(data)
+        TitleBuilder.from_xml(NetFlix::Request.new(:url => 'http://api.netflix.com/catalog/titles', :parameters => params).send)
       end
 
     end
