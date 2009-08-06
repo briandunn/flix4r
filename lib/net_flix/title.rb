@@ -9,6 +9,10 @@ module NetFlix
     has_value :web_page
     has_collection :delivery_formats
 
+    def movie
+      Crack::XML.parse(NetFlix::Request.new(:url => id ).send) if id =~ /movies\/(\d+)/
+    end
+
     def to_json
       attributes.to_json
     end
@@ -22,11 +26,6 @@ module NetFlix
     end
 
     class << self
-
-      def complete_list
-        data = NetFlix::API::Catalog::Titles.index
-        TitleBuilder.from_xml(data)
-      end
 
       def search(params)
         data = NetFlix::API::Catalog::Titles.search(params)

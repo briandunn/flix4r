@@ -1,7 +1,7 @@
 module NetFlix
   module API
     module Catalog
-      module Titles 
+      module Titles
 
         class << self
 

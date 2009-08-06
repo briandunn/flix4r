@@ -10,7 +10,8 @@ this_dir = File.dirname(__FILE__)
   require 'net/http'
   require 'ftools'
   require 'nokogiri'
-  require 'valuable'
+  require 'crack'
+  require File.join( this_dir, 'valuable' )
 
   builders = File.join( this_dir, 'net_flix', 'builders')
 

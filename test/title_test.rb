@@ -13,16 +13,4 @@ class TitleTest < Test::Unit::TestCase
     assert_equal expected.id, actual.id
     assert_equal expected.delivery_formats, actual.delivery_formats
   end
-
-  def test_that_search_uses_api_and_builder
-    NetFlix::API::Catalog::Titles.stubs(:search).returns(:xml_results)
-    TitleBuilder.expects(:from_xml).with(:xml_results).returns(:movies)
-    assert_equal :movies, NetFlix::Title.search(:term)
-  end
-
-  def test_that_complete_list_call_uses_api
-    NetFlix::API::Catalog::Titles.expects(:index).returns('<xml />')
-    NetFlix::Title.complete_list
-  end
-
 end
