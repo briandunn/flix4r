@@ -25,4 +25,10 @@ class NetFlix::MovieTest < Test::Unit::TestCase
       assert_equal @movie.synopsis, "Joyce Carol Oates' classic short story \"Where Are You Going, Where Have You Been?\" serves as the inspiration for this disturbing drama, winner of the Grand Jury Prize at the 1986 Sundance Film Festival. When sultry teen Connie (<a href=\"http://www.netflix.com/RoleDisplay/Laura_Dern/23978\">Laura Dern</a>) discovers her sexuality, the object of her affection isn't someone her age but rather the much older, mysterious Arnold Friend (<a href=\"http://www.netflix.com/RoleDisplay/Treat_Williams/99725\">Treat Williams</a>) -- who may not have the purest intentions. " 
     end
   end
+
+  context "rating" do
+    should "be the rating of the movie" do 
+      assert_equal @movie.rating, 'PG'
+    end
+  end
 end
