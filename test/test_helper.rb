@@ -1,13 +1,17 @@
 require 'rubygems'
 require 'test/unit'
 require 'shoulda'
+require 'ruby-debug'
+require 'mocha'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'flix4r'
-require 'mocha'
 
 class Test::Unit::TestCase
+  def load_fixture_file( file_name )
+    File.open( File.join(File.dirname(__FILE__), 'fixtures', file_name )).read
+  end
 end
 module Test::Unit::Assertions
 	
@@ -28,4 +32,5 @@ module Test::Unit::Assertions
       not items.include? needle
     end
   end
+
 end
