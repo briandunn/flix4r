@@ -1,8 +1,8 @@
 module NetFlix
   class Credentials < Valuable
 
-    CONFIG_FILENAME = File.join( File.dirname(__FILE__), '..', '..', 'credentials.yml')
-    
+    @@config_file_name = File.join( File.dirname(__FILE__), '..', '..', 'credentials.yml')  
+
     has_value :key
     has_value :secret
     has_value :access_token
@@ -13,18 +13,22 @@ module NetFlix
     
     class << self
 
+      def config_file_name= file_name
+        @@config_file_name = file_name
+      end
+
       def from_file
-        new(config_file_exists? ? YAML.load(File.open(CONFIG_FILENAME)) : {}) 
+        new(config_file_exists? ? YAML.load(File.open(@@config_file_name)) : {}) 
       end
 
       def config_file_exists?
-        File.exist? CONFIG_FILENAME
+        File.exist? @@config_file_name
       end
 
     end # class methods
 
     def to_file!
-      credentials_store = File.new(CONFIG_FILENAME, 'w')
+      credentials_store = File.new(@@config_file_name, 'w')
       credentials_store.puts(self.to_yaml)
       credentials_store.close
     end
