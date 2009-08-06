@@ -13,4 +13,14 @@ class TitleTest < Test::Unit::TestCase
     assert_equal expected.id, actual.id
     assert_equal expected.delivery_formats, actual.delivery_formats
   end
+
+  context "autocomplete" do
+
+    should "return an array of titles" do
+      NetFlix::Request.expects(:new).returns(stub( :send => load_fixture_file('autocomplete.xml' )))
+
+      assert_equal ["Love Wrecked", "Lovesickness", "Loverboy" ], NetFlix::Title.autocomplete( 'ignored' ) 
+    end
+  end
+
 end

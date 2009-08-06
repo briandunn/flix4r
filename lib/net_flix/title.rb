@@ -26,9 +26,18 @@ module NetFlix
     end
 
     class << self
+      def base_url
+        'http://api.netflix.com/catalog/titles'
+      end
+
+      def autocomplete(params)
+        (Nokogiri.parse(
+          NetFlix::Request.new(:url => base_url << '/autocomplete', :parameters => params).send
+        ) / '//title/@short').to_a.map(&:to_s)
+      end
 
       def search(params)
-        TitleBuilder.from_xml(NetFlix::Request.new(:url => 'http://api.netflix.com/catalog/titles', :parameters => params).send)
+        TitleBuilder.from_xml(NetFlix::Request.new(:url => base_url, :parameters => params).send)
       end
 
     end
