@@ -1,4 +1,4 @@
-require File.join( File.dirname(__FILE__), 'test.rb')
+require 'test_helper'
 
 class TitleBuilderUsingTitleIndexTest < Test::Unit::TestCase
 

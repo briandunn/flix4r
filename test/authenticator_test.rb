@@ -1,5 +1,4 @@
-require File.join( File.dirname(__FILE__), 'test.rb')
-
+require 'test_helper'
 class AuthenticatorTest < Test::Unit::TestCase
 
   def test_that_url_is_properly_encoded

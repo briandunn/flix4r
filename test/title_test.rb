@@ -1,5 +1,4 @@
-require File.join( File.dirname(__FILE__), 'test.rb')
-
+require 'test_helper'
 class TitleTest < Test::Unit::TestCase
 
   def request_stub

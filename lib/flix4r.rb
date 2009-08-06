@@ -1,0 +1,19 @@
+
+this_dir = File.dirname(__FILE__)
+
+  require 'rubygems'
+  require 'activesupport'
+  require 'open-uri'
+  require 'yaml'
+  require 'hmac-sha1'
+  require 'json'
+  require 'net/http'
+  require 'ftools'
+  require 'nokogiri'
+  require 'valuable'
+
+  builders = File.join( this_dir, 'net_flix', 'builders')
+
+  ActiveSupport::Dependencies.load_paths << this_dir
+  ActiveSupport::Dependencies.load_paths << builders 
+
