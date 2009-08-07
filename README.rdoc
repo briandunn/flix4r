@@ -1,44 +1,39 @@
-=Flix4r=
+=Flix4r
+===a ruby client for the NetFlix API
 
-this is but a mere gemification of the google code project found here: "http://code.google.com/p/flix4r/"
-
-* a ruby client for the NetFlix API *
+this is a gemification of the google code project found here: "http://code.google.com/p/flix4r/"
 
 Based on the "RESTful" resources provided by the NetFlix API, flix4r provides a clean, if _very_ incomplete, set of models for accessing NetFlixs' (sp?) resources.
 
-==Credentials==
+==Credentials
 You must add your netflix credentials to flix4r/lib/oauth.yml. You can get credentials from http://developer.netflix.com/.
 
-==Example Usage==
-{{{
->> list = NetFlix::Title.search(:term => 'sneakers', :max_results => 2)
-=> [#<NetFlix::Title:0x57f0f58 ...>, #<NetFlix::Title:0x57f0f58 ...>] # shortened for readability
->> sneakers = list.first
->> sneakers.title
-=> "Sneakers"
+==Example Usage
+  >> list = NetFlix::Title.search(:term => 'sneakers', :max_results => 2)
+  => [#<NetFlix::Title:0x57f0f58 ...>, #<NetFlix::Title:0x57f0f58 ...>] # shortened for readability
+  >> sneakers = list.first
+  >> sneakers.title
+  => "Sneakers"
 
->> sneakers.delivery_formats
-=> ['instant', 'DVD']
+  >> sneakers.delivery_formats
+  => ['instant', 'DVD']
 
->> sneakers.id
-=> "http://api.netflix.com/catalog/titles/movies/60031755"
+  >> sneakers.id
+  => "http://api.netflix.com/catalog/titles/movies/60031755"
 
->> sneakers.web_page
-=> "http://www.netflix.com/Movie/Sneakers/60031755"
+  >> sneakers.web_page
+  => "http://www.netflix.com/Movie/Sneakers/60031755"
 
->> sneakers.genres
-=> ["Thrillers", "Action Comedies", "Espionage Thrillers", "Action Thrillers", "Suspense", "Heist Films", "Universal Studios Home Entertainment"]
+  >> sneakers.genres
+  => ["Thrillers", "Action Comedies", "Espionage Thrillers", "Action Thrillers", "Suspense", "Heist Films", "Universal Studios Home Entertainment"]
 
->> sneakers.actors
-=> ["Robert Redford", "Sidney Poitier", "Ben Kingsley", "Dan Aykroyd", "Mary McDonnell", "River Phoenix", "David Strathairn", "Donal Logue", "Timothy Busfield", "Eddie Jones", "George Hearn", "Lee Garlington", "Stephen Tobolowsky"]
-}}}
+  >> sneakers.actors
+  => ["Robert Redford", "Sidney Poitier", "Ben Kingsley", "Dan Aykroyd", "Mary McDonnell", "River Phoenix", "David Strathairn", "Donal Logue", "Timothy Busfield", "Eddie Jones", "George Hearn", "Lee Garlington", "Stephen Tobolowsky"]
 
-===Movie Retrival===
+===Movie Retrival
 more data on each title is available through the NetFlix::Title#movie method. continuing the above example:
-{{{
->> sneakers.movie.synopsis
-=> "Shadowy U.S. intelligence agents blackmail <a href=\"http://www.netflix.com/RoleDisplay/Robert_Redford/76851\">Robert Redford</a> and his eccentric team of security experts into stealing a code-breaking \"black box\" from a Soviet-funded genius. But Redford uncovers a bigger conspiracy, and he and his \"sneakers\" (<a href=\"http://www.netflix.com/RoleDisplay/Sidney_Poitier/74185\">Sidney Poitier</a>, <a href=\"http://www.netflix.com/RoleDisplay/Dan_Aykroyd/4025\">Dan Aykroyd</a>, <a href=\"http://www.netflix.com/RoleDisplay/River_Phoenix/73423\">River Phoenix</a> and <a href=\"http://www.netflix.com/RoleDisplay/David_Strathairn/89582\">David Strathairn</a>) must save themselves and the world economy by stealing the box back from the blackmailers."
-}}}
+  >> sneakers.movie.synopsis
+  => "Shadowy U.S. intelligence agents blackmail <a href=\"http://www.netflix.com/RoleDisplay/Robert_Redford/76851\">Robert Redford</a> and his eccentric team of security experts into stealing a code-breaking \"black box\" from a Soviet-funded genius. But Redford uncovers a bigger conspiracy, and he and his \"sneakers\" (<a href=\"http://www.netflix.com/RoleDisplay/Sidney_Poitier/74185\">Sidney Poitier</a>, <a href=\"http://www.netflix.com/RoleDisplay/Dan_Aykroyd/4025\">Dan Aykroyd</a>, <a href=\"http://www.netflix.com/RoleDisplay/River_Phoenix/73423\">River Phoenix</a> and <a href=\"http://www.netflix.com/RoleDisplay/David_Strathairn/89582\">David Strathairn</a>) must save themselves and the world economy by stealing the box back from the blackmailers."
 
-==NetFlix vs Netflix==
+==NetFlix vs Netflix
 The great Panda has pointed out to me that the official name is Netflix. meh.= flix4r
