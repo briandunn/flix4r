@@ -10,7 +10,11 @@ module NetFlix
     has_collection :delivery_formats
 
     def movie
-      @movie ||= NetFlix::Movie.new(NetFlix::Request.new(:url => id ).send) if id =~ /movies\/(\d+)/
+      @movie ||= NetFlix::Movie.new(NetFlix::Request.new(:url => id ).send) if is_movie?
+    end
+
+    def is_movie?
+      id =~ /movies\/(\d+)/
     end
 
     def to_json

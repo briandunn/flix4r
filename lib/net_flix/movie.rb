@@ -33,5 +33,12 @@ module NetFlix
       @actors ||= ActorBuilder.from_movie(@xdoc)
     end
 
+    def self.find( params )
+      if params[:id]
+        new( NetFlix::Request.new(:url => params[:id]).send )
+      elsif params[:term]
+        Title.search(params).select(&:is_movie?)
+      end
+    end
   end
 end
