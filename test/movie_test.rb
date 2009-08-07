@@ -16,7 +16,7 @@ class NetFlix::MovieTest < Test::Unit::TestCase
 
   context "synopsis" do
     should "default to blank" do
-      assert_equal Movie.new('').synopsis, ''
+      assert_equal NetFlix::Movie.new('').synopsis, ''
     end
     should "make a request for the synopsis" do
       mock_next_response("http://api.netflix.com/catalog/titles/movies/60001220/synopsis", 'synopsis.xml')
