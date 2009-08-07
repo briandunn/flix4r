@@ -46,12 +46,12 @@ module NetFlix
     end
 
     def add_authentication_parameters!
-      request.parameters = request.parameters.merge(authentication_parameters)
+      request.parameters.merge!(authentication_parameters)
     end
 
     def add_signature!
       sign = {'oauth_signature' => Request.encode(signature)}
-      request.parameters = request.parameters.merge( sign  )
+      request.parameters.merge!( sign  )
     end
 
     def sign!

@@ -6,11 +6,6 @@ class AuthenticatorTest < Test::Unit::TestCase
     assert_equal 'http%3A%2F%2Fphotos.example.net%2Fa%20pic', NetFlix::Authenticator.new(:request => fake_request).encoded_url
   end
 
-  def test_that_spaces_in_parameters_are_encoded
-    request = stub_everything(:parameter_string => 'a key=value')
-    assert_equal 'a%20key%3Dvalue', NetFlix::Authenticator.new(:request => request).encoded_parameters
-  end
-
   def test_that_authentication_corresponds_to_known_values
     #based on http://developer.netflix.com/docs/Security#0_pgfId-1015486
     #based on http://term.ie/oauth/example/client.php
@@ -54,12 +49,12 @@ class AuthenticatorTest < Test::Unit::TestCase
 
   def test_that_signature_is_added_to_parameters_during_signing
     cred = stub_everything(:secred => 'shhh', :key => 'letmein', :valid? => true) 
-    params = stub_everything
-    params.expects(:merge).with(has_key('oauth_signature')).once
+    params = {}
     
     request = stub_everything(:parameters => params)
     auth = NetFlix::Authenticator.new(:request => request, :credentials => cred)
     auth.sign!
+    assert params['oauth_signature']
   end
 
   def test_that_exception_is_raised_if_secret_is_missing

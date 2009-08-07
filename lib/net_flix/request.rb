@@ -10,10 +10,9 @@ module NetFlix
     def ordered_keys
       parameters.keys.sort
     end
-
     def parameter_string
-      string = ordered_keys.map do |key, value|
-        "#{key}=#{self.class.encode(parameters[key])}"
+      ordered_keys.map do |key, value|
+        "#{key}=#{ ( key == 'term' )? URI.escape( parameters[key] ) : parameters[key]}"
       end.join('&')
     end
 
