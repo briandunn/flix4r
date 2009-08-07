@@ -57,7 +57,6 @@ class NetFlix::MovieTest < Test::Unit::TestCase
 
   context "find" do
     setup do
-      mock_next_response("http://api.netflix.com/catalog/titles/movies/60001220/cast", 'cast.xml')
     end
     should "return an array of movies" do
     end

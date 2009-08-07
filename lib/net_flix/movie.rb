@@ -1,6 +1,6 @@
 module NetFlix
   class Movie
-    RATING_PREDICATE = %w{ G PG PG-13 R NC-17 }.map do |rating| 
+    RATING_PREDICATE = %w{ G PG PG-13 R NC-17 NR }.map do |rating| 
         "@term=\"#{rating}\""
     end.join(' or ')
 
@@ -17,7 +17,11 @@ module NetFlix
     end
 
     def synopsis
-      Crack::XML.parse(NetFlix::Request.new(:url => @xdoc.xpath("/catalog_title/link[@title='synopsis']/@href").to_s).send)['synopsis']
+      @synopsis ||= begin 
+        Crack::XML.parse(NetFlix::Request.new(:url => @xdoc.xpath("/catalog_title/link[@title='synopsis']/@href").to_s).send)['synopsis']
+      rescue
+        ''
+      end
     end
 
     # suppported title lengths are :short (the default) and :regular.
