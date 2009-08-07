@@ -29,4 +29,11 @@ class NetflixTest < Test::Unit::TestCase
     request.log
   end
 
+  context :encoding do
+    should "encode parameter values" do
+      request = NetFlix::Request.new(:url => 'some_url', :parameters => {'term' => 'with spaces'})
+      assert_match /with%20spaces/, request.target.to_s
+    end
+  end
+
 end

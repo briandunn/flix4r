@@ -12,8 +12,8 @@ module NetFlix
     end
 
     def parameter_string
-      string = ordered_keys.map do |key|
-        "#{key}=#{parameters[key]}"
+      string = ordered_keys.map do |key, value|
+        "#{key}=#{self.class.encode(parameters[key])}"
       end.join('&')
     end
 
@@ -35,8 +35,8 @@ module NetFlix
       Net::HTTP.get(target)
     end
 
-    def Request.encode(value)
-      URI.escape( value, RESERVED_CHARACTERS ) if value
+    def self.encode(value)
+      URI.escape( value.to_s, RESERVED_CHARACTERS ) if value
     end
 
     # validation stuff
