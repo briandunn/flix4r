@@ -12,6 +12,10 @@ class Test::Unit::TestCase
   def load_fixture_file( file_name )
     File.open( File.join(File.dirname(__FILE__), 'fixtures', file_name )).read
   end
+
+  def mock_next_response( url, fixture_file_name )
+    NetFlix::Request.expects(:new).with(:url => url ).returns(stub(:send => load_fixture_file(fixture_file_name)))
+  end
 end
 module Test::Unit::Assertions
 	

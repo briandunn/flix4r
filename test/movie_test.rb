@@ -16,7 +16,7 @@ class NetFlix::MovieTest < Test::Unit::TestCase
 
   context "synopsis" do
     setup do
-      NetFlix::Request.expects(:new).with(:url => "http://api.netflix.com/catalog/titles/movies/60001220/synopsis" ).returns(stub(:send => load_fixture_file('synopsis.xml')))
+      mock_next_response("http://api.netflix.com/catalog/titles/movies/60001220/synopsis", 'synopsis.xml')
     end
     should "make a request for the synopsis" do
       @movie.synopsis
@@ -31,4 +31,28 @@ class NetFlix::MovieTest < Test::Unit::TestCase
       assert_equal @movie.rating, 'PG'
     end
   end
+
+  context "title" do
+    should "be the title of the movie" do
+      assert_equal @movie.title, 'Jaws' 
+    end
+  end
+
+  context "release_year" do
+    should "be the release year" do
+      assert_equal @movie.release_year, '1975'
+    end
+  end
+
+  context "actors" do
+    setup do
+      mock_next_response("http://api.netflix.com/catalog/titles/movies/60001220/cast", 'cast.xml')
+    end
+    should "be an array of actor names" do
+      ['Roy Scheider','Richard Dreyfuss'].each do |actor|
+        assert @movie.actors.include?(actor) 
+      end
+    end
+  end
+
 end
