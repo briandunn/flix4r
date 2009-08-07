@@ -2,12 +2,19 @@ module NetFlix
   class Authenticator < Valuable
 
     has_value :request
-    has_value :timestamp, :default => Time.now.to_i
     has_value :nonce, :default => rand(1_000_000)
     has_value :credentials
 
     def access_token
       credentials.access_token
+    end
+
+    def timestamp=stamp
+      @timestamp=stamp
+    end
+
+    def timestamp 
+      @timestamp || Time.now.to_i
     end
 
     def key
