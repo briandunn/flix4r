@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<people>
+  <person>
+    <id>http://api.netflix.com/catalog/people/87835</id>
+    <name>Steven Spielberg</name>
+    <bio>
+      <![CDATA[One of the most successful filmmakers in history, Steven Spielberg was born December 18, 1946, in Cincinnati, Ohio. He made 8mm home movies during his youth and spent many years directing for television after dropping out of college.<p>His 1971 television movie Duel hinted at the suspense level of later films such as Jaws (1975), but Close Encounters of the Third Kind (1977) earned him his first Oscar nomination for directing. Although films such as the Indiana Jones trilogy and E.T.: The Extra-Terrestrial (1982) were hits with audiences, it wasn't until The Color Purple (1985) that he tackled more serious subjects.<p>In 1993, Spielberg directed the Holocaust drama Schindler's List, for which he won his first Oscar for Best Director; he won again for Saving Private Ryan (1998). Spielberg also has tackled more traditional fare such as Catch Me If You Can (2002) and The Terminal (2004). His broad resume and depth of talent garnered him the Cecil B. DeMille Award in 2009.]]>
+</bio>
+    <link href="http://api.netflix.com/catalog/people/87835/filmography"
+    rel="http://schemas.netflix.com/catalog/titles.filmography"
+    title="filmography"></link>
+    <link href="http://www.netflix.com/RoleDisplay/Steven_Spielberg/87835"
+    rel="alternate" title="web page"></link>
+  </person>
+</people>
