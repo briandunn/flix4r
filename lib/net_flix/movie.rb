@@ -4,6 +4,7 @@ module NetFlix
         "@term=\"#{rating}\""
     end.join(' or ')
 
+    # not every movie has a director!
     def directors
       @directors ||= ( Nokogiri.parse(fetch_link('directors')) / "/people/person/name/text()" ).to_a.map(&:to_s)
     end

@@ -20,6 +20,15 @@ class NetFlix::MovieTest < Test::Unit::TestCase
       mock_next_response("http://api.netflix.com/catalog/titles/movies/60001220/directors", 'directors.xml' ) 
       assert_equal [ "Steven Spielberg" ], @movie.directors
     end
+    context "element missing" do
+      should "be an empty array" do
+        movie_xml = Nokogiri.parse(load_fixture_file('movies.xml'))
+        links = movie_xml / "//link"
+        links.remove
+        @movie = NetFlix::Movie.new(movie_xml)
+        assert_equal [], @movie.directors
+      end
+    end
   end
 
   context "actors" do
