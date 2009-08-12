@@ -16,16 +16,16 @@ module NetFlix
       ( @xdoc / "//catalog_title/title/@#{length}" ).to_s
     end
 
+    def images
+      HashWithIndifferentAccess.new(Crack::XML.parse(@xdoc.xpath('//catalog_title/box_art').to_s)['box_art'])
+    end
+
     def synopsis
       @synopsis ||= begin 
         Crack::XML.parse(fetch_link('synopsis'))['synopsis']
       rescue
         ''
       end
-    end
-
-    def directors
-      @directors ||= ( Nokogiri.parse(fetch_link('directors')) / "/people/person/name/text()" ).to_a.map(&:to_s)
     end
 
     def id
@@ -65,7 +65,7 @@ module NetFlix
       end
 
       def search(params)
-        new((NetFlix::Request.new(:url => base_url, :parameters => params).send))
+        parse(NetFlix::Request.new(:url => base_url, :parameters => params).send)
       end
 
       def parse(xml)
@@ -73,14 +73,13 @@ module NetFlix
 
         nxml = Nokogiri.XML(xml)
         
-        titles(nxml).map do |data|
-          Title.new(data)
+        (nxml / node_xpath).map do |data|
+          self.new(data)
         end
       end
-      private
-      def titles(noko_xml)
-        titles = noko_xml.xpath('//catalog_title')
-        titles.empty? ? noko_xml.xpath('//title_index_item') : titles 
+      protected
+      def node_xpath
+        '//catalog_title'
       end
     end
   end # class Title

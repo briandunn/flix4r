@@ -4,8 +4,8 @@ module NetFlix
         "@term=\"#{rating}\""
     end.join(' or ')
 
-    def images
-      HashWithIndifferentAccess.new(Crack::XML.parse(@xdoc.xpath('/catalog_title/box_art').to_s)['box_art'])
+    def directors
+      @directors ||= ( Nokogiri.parse(fetch_link('directors')) / "/people/person/name/text()" ).to_a.map(&:to_s)
     end
 
     def rating
@@ -24,8 +24,14 @@ module NetFlix
       if params[:id]
         new( NetFlix::Request.new(:url => params[:id]).send )
       elsif params[:term]
-        Title.search(params).select(&:is_movie?)
+        search(params)
       end
+    end
+
+    protected
+    # the nodes that correspond to the constructor argument
+    def self.node_xpath
+      "//catalog_title[contains(id/text(),'movies')]"
     end
   end
 end

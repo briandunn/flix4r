@@ -30,6 +30,16 @@ class TitleTest < Test::Unit::TestCase
         assert_equal @title.title, 'Jaws' 
       end
     end
+    context "images" do
+      should "return an image url for the sizes small, medium, and large" do 
+        %w{ small medium large }.each do |size|
+          assert_nothing_raised 'valid url' do
+            URI::parse(@title.images[size])
+          end
+          assert_match(/\.jpg$/, @title.images[size], 'looks like an image')
+        end
+      end
+    end
 
     context "synopsis" do
       should "default to blank" do
@@ -44,13 +54,6 @@ class TitleTest < Test::Unit::TestCase
         assert_equal @title.synopsis, "Joyce Carol Oates' classic short story \"Where Are You Going, Where Have You Been?\" serves as the inspiration for this disturbing drama, winner of the Grand Jury Prize at the 1986 Sundance Film Festival. When sultry teen Connie (<a href=\"http://www.netflix.com/RoleDisplay/Laura_Dern/23978\">Laura Dern</a>) discovers her sexuality, the object of her affection isn't someone her age but rather the much older, mysterious Arnold Friend (<a href=\"http://www.netflix.com/RoleDisplay/Treat_Williams/99725\">Treat Williams</a>) -- who may not have the purest intentions. " 
       end
     end
-    context "directors" do
-      should "be the an array with the name of a director" do
-        mock_next_response("http://api.netflix.com/catalog/titles/movies/60001220/directors", 'directors.xml' ) 
-        assert_equal [ "Steven Spielberg" ], @title.directors
-      end
-    end
-
   end
 
 end
