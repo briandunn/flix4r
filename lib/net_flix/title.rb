@@ -49,7 +49,7 @@ module NetFlix
 
     private
     def fetch_link(title)
-      puts link_url = ( @xdoc / "//catalog_title/link[@title='#{title}']/@href" ).to_s
+      link_url = ( @xdoc / "//catalog_title/link[@title='#{title}']/@href" ).to_s
       NetFlix::Request.new(:url => link_url ).send
     end
 
