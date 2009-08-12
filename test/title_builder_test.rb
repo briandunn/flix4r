@@ -1,5 +1,6 @@
 require 'test_helper'
 
+=begin
 class TitleBuilderUsingTitleIndexTest < Test::Unit::TestCase
 
   def test_that_id_is_parsed
@@ -79,6 +80,7 @@ class TitleBuilderUsingTitleIndexTest < Test::Unit::TestCase
     assert_equal ['George Wendt', 'Robert Hy Gorman'], TitleBuilder.from_xml(xml).first.actors.sort
   end
 end
+=end
 class TitleBuilderUsingCatalogSearchTest < Test::Unit::TestCase
 
   def test_that_id_is_parsed

@@ -14,7 +14,7 @@ module NetFlix
     end
 
     def timestamp 
-      @timestamp || Time.now.to_i
+      @timestamp ||= Time.now.to_i
     end
 
     def key
