@@ -1,11 +1,5 @@
 module NetFlix
-  class Title < Valuable
-
-    has_value :release_year
-    has_collection :genres
-    has_collection :actors
-    has_value :web_page
-    has_collection :delivery_formats
+  class Title
 
     def initialize(xml)
       @xdoc = xml.is_a?(String) ? Nokogiri.parse( xml ) : xml
