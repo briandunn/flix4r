@@ -49,7 +49,7 @@ module NetFlix
 
     private
     def fetch_link(title)
-      link_url = ( @xdoc / "//catalog_title/link[@title='#{title}']/@href" ).to_s
+      puts link_url = ( @xdoc / "//catalog_title/link[@title='#{title}']/@href" ).to_s
       NetFlix::Request.new(:url => link_url ).send
     end
 
@@ -74,7 +74,7 @@ module NetFlix
         nxml = Nokogiri.XML(xml)
         
         (nxml / node_xpath).map do |data|
-          self.new(data)
+          self.new(data.to_s)
         end
       end
       protected
