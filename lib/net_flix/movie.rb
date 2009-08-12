@@ -9,11 +9,11 @@ module NetFlix
     end
 
     def rating
-      ( @xdoc / "/catalog_title/category[#{RATING_PREDICATE}]/@term" ).to_s
+      ( @xdoc / "//catalog_title/category[#{RATING_PREDICATE}]/@term" ).to_s
     end
 
     def release_year
-      ( @xdoc / "/catalog_title/release_year/text()" ).to_s
+      ( @xdoc / "//catalog_title/release_year/text()" ).to_s
     end
 
     def actors
