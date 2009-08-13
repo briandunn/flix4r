@@ -18,7 +18,7 @@ class NetflixTest < Test::Unit::TestCase
   def test_that_authenticator_receives_copy_of_request
     request = NetFlix::Request.new(:parameters => {'key1' => '2'})
     NetFlix::Authenticator.expects(:new).with(has_entry(:request, request)).returns(stub_everything)
-    Net::HTTP.stubs(:get)
+    APICache.stubs(:get)
     
     request.send
   end

@@ -31,7 +31,7 @@ module NetFlix
     def send
       authenticator.sign!
       log
-      Net::HTTP.get(target)
+      APICache.get(target.to_s)
     end
 
     def self.encode(value)

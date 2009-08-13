@@ -25,7 +25,7 @@ module NetFlix
       @log_requests
     end
 
-    def log_requests= bool
+    def log_requests= bool=true
       @log_requests = bool 
     end
 
