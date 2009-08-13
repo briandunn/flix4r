@@ -18,11 +18,19 @@ module NetFlix
     end
 
     def logger
-      @logger ||= create_logger 
+      @logger ||= defined?(Rails) ? RAILS_DEFAULT_LOGGER : create_logger 
+    end
+
+    def log_requests?
+      @log_requests
+    end
+
+    def log_requests= bool
+      @log_requests = bool 
     end
 
     def log(message)
-      NetFlix.logger.info("[#{Time.now.to_i}] #{message}")
+      NetFlix.logger.info("[#{Time.now.to_i}] #{message}") if log_requests?  
     end  
   end # class methods
 end
