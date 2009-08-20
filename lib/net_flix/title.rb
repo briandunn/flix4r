@@ -58,6 +58,10 @@ module NetFlix
         ) / '//title/@short').to_a.map(&:to_s)
       end
 
+      def index(file_name)
+        NetFlix::Request.new( :url => NetFlix::Title.base_url + '/index').write_to_file(file_name)
+      end
+
       def search(params)
         parse(NetFlix::Request.new(:url => base_url, :parameters => params).send)
       end
