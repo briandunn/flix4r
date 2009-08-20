@@ -3,7 +3,7 @@ require 'active_support'
 class Valuable
 
   def attributes
-    @attributes ||= HashWithIndifferentAccess.new(deep_duplicate_of(self.class.defaults)) 
+    @attributes ||= deep_duplicate_of(self.class.defaults)
   end
 
   def initialize(atts = {})
