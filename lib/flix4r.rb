@@ -20,5 +20,3 @@ this_dir = File.dirname(__FILE__)
   ActiveSupport::Dependencies.load_paths << this_dir
   ActiveSupport::Dependencies.load_paths << builders 
 
-  APICache.start
-
