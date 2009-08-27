@@ -1,8 +1,28 @@
 module NetFlix
   class Title
+    RATING_PREDICATE = %w{ G PG PG-13 R NC-17 NR }.map do |rating| 
+        "@term=\"#{rating}\""
+    end.join(' or ')
 
     def initialize(xml)
       @xdoc = xml.is_a?(String) ? Nokogiri.parse( xml ) : xml
+    end
+
+    def actors
+      @actors ||= ActorBuilder.from_movie(@xdoc)
+    end
+
+    # not every title has a director!
+    def directors
+      @directors ||= ( Nokogiri.parse(fetch_link('directors')) / "/people/person/name/text()" ).to_a.map(&:to_s)
+    end
+
+    def rating
+      ( @xdoc / "//catalog_title/category[#{RATING_PREDICATE}]/@term" ).to_s
+    end
+
+    def release_year
+      ( @xdoc / "//catalog_title/release_year/text()" ).to_s
     end
 
     # suppported title lengths are :short (the default) and :regular.
@@ -64,6 +84,14 @@ module NetFlix
 
       def search(params)
         parse(NetFlix::Request.new(:url => base_url, :parameters => params).send)
+      end
+
+      def find( params )
+        if params[:id]
+          new( NetFlix::Request.new(:url => params[:id]).send )
+        elsif params[:term]
+          search(params)
+        end
       end
 
       def parse(xml)
