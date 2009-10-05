@@ -34,6 +34,10 @@ You must add your netflix credentials to flix4r/lib/oauth.yml. You can get crede
 more data on each title is available through the NetFlix::Title#movie method. continuing the above example:
   >> sneakers.movie.synopsis
   => "Shadowy U.S. intelligence agents blackmail <a href=\"http://www.netflix.com/RoleDisplay/Robert_Redford/76851\">Robert Redford</a> and his eccentric team of security experts into stealing a code-breaking \"black box\" from a Soviet-funded genius. But Redford uncovers a bigger conspiracy, and he and his \"sneakers\" (<a href=\"http://www.netflix.com/RoleDisplay/Sidney_Poitier/74185\">Sidney Poitier</a>, <a href=\"http://www.netflix.com/RoleDisplay/Dan_Aykroyd/4025\">Dan Aykroyd</a>, <a href=\"http://www.netflix.com/RoleDisplay/River_Phoenix/73423\">River Phoenix</a> and <a href=\"http://www.netflix.com/RoleDisplay/David_Strathairn/89582\">David Strathairn</a>) must save themselves and the world economy by stealing the box back from the blackmailers."
+ 
+==Instalation
+The gem is on gemcutter.
+http://gemcutter.org/gems/flix4r
 
 ==NetFlix vs Netflix
 The great Panda has pointed out to me that the official name is Netflix. meh.= flix4r
