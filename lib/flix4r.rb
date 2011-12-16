@@ -2,7 +2,13 @@
 this_dir = File.dirname(__FILE__)
 
   require 'rubygems'
-  require 'activesupport'
+  
+  begin
+    require 'activesupport'
+  rescue LoadError
+    require 'active_support'
+  end
+  
   require 'open-uri'
   require 'yaml'
   require 'hmac-sha1'
