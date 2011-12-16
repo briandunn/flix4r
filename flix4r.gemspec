@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{flix4r}
-  s.version = "0.2.3"
+  s.version = "0.2.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brian Dunn"]
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = %q{brianpatrickdunn@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.rdoc"
+    "README.rdoc"
   ]
   s.files = [
     ".document",
@@ -62,7 +62,15 @@ Gem::Specification.new do |s|
      "test/test_helper.rb",
      "test/title_test.rb"
   ]
-
+  
+  s.add_dependency 'activesupport', '~> 3.1.3'
+  s.add_dependency 'ruby-openid',   '~> 2.1.8'
+  s.add_dependency 'ruby-hmac',     '~> 0.4.0'
+  s.add_dependency 'json',          '~> 1.6.3'
+  s.add_dependency 'nokogiri',      '~> 1.5.0'
+  s.add_dependency 'crack',         '~> 0.3.1'
+  s.add_dependency 'api_cache',     '~> 0.2.3'
+  
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
