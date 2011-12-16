@@ -14,10 +14,10 @@ this_dir = File.dirname(__FILE__)
   require 'hmac-sha1'
   require 'json'
   require 'net/http'
-  require 'ftools'
+  require 'fileutils'
   require 'nokogiri'
   require 'crack'
-  gem 'mloughran-api_cache'
+  #gem 'mloughran-api_cache' # ... what?
   require 'api_cache'
   require File.join( this_dir, 'valuable' )
 
