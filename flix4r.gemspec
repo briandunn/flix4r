@@ -70,7 +70,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'nokogiri',      '~> 1.5.0'
   s.add_dependency 'crack',         '~> 0.3.1'
   s.add_dependency 'api_cache',     '~> 0.2.3'
-  
+  s.add_development_dependency 'rake'
+
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
