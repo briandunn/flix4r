@@ -1,21 +1,3 @@
-require 'rubygems'
-require 'rake'
-
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "flix4r"
-    gem.summary = %Q{a port of the google code project: http://code.google.com/p/flix4r/}
-    gem.email = "brianpatrickdunn@gmail.com"
-    gem.homepage = "http://github.com/briandunn/flix4r"
-    gem.authors = ["Brian Dunn"]
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
-
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
-end
-
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
