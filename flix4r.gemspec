@@ -62,7 +62,7 @@ Gem::Specification.new do |s|
      "test/test_helper.rb",
      "test/title_test.rb"
   ]
-  
+
   s.add_dependency 'activesupport', '~> 3.1.3'
   s.add_dependency 'ruby-openid',   '~> 2.1.8'
   s.add_dependency 'ruby-hmac',     '~> 0.4.0'
