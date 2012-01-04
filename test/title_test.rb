@@ -17,7 +17,7 @@ class TitleTest < Test::Unit::TestCase
     should "return an array of titles" do
       NetFlix::Request.expects(:new).returns(stub( :send => load_fixture_file('autocomplete.xml' )))
 
-      assert_equal ["Love Wrecked", "Lovesickness", "Loverboy" ], NetFlix::Title.autocomplete( 'ignored' ) 
+      assert_equal ["Love Wrecked", "Lovesickness", "Loverboy" ], NetFlix::Title.autocomplete( 'ignored' )
     end
   end
 
@@ -27,11 +27,11 @@ class TitleTest < Test::Unit::TestCase
     end
     context "title" do
       should "be the title of the movie" do
-        assert_equal @title.title, 'Jaws' 
+        assert_equal @title.title, 'Jaws'
       end
     end
     context "images" do
-      should "return an image url for the sizes small, medium, and large" do 
+      should "return an image url for the sizes small, medium, and large" do
         %w{ small medium large }.each do |size|
           assert_nothing_raised 'valid url' do
             URI::parse(@title.images[size])
@@ -42,16 +42,13 @@ class TitleTest < Test::Unit::TestCase
     end
 
     context "synopsis" do
-      should "default to blank" do
-        assert_equal NetFlix::Title.new('').synopsis, ''
-      end
       should "make a request for the synopsis" do
         mock_next_response("http://api.netflix.com/catalog/titles/movies/60001220/synopsis", 'synopsis.xml')
         @title.synopsis
       end
       should "parse it out all awesomely" do
         mock_next_response("http://api.netflix.com/catalog/titles/movies/60001220/synopsis", 'synopsis.xml')
-        assert_equal @title.synopsis, "Joyce Carol Oates' classic short story \"Where Are You Going, Where Have You Been?\" serves as the inspiration for this disturbing drama, winner of the Grand Jury Prize at the 1986 Sundance Film Festival. When sultry teen Connie (<a href=\"http://www.netflix.com/RoleDisplay/Laura_Dern/23978\">Laura Dern</a>) discovers her sexuality, the object of her affection isn't someone her age but rather the much older, mysterious Arnold Friend (<a href=\"http://www.netflix.com/RoleDisplay/Treat_Williams/99725\">Treat Williams</a>) -- who may not have the purest intentions. " 
+        assert_equal "Joyce Carol Oates' classic short story \"Where Are You Going, Where Have You Been?\" serves as the inspiration for this disturbing drama, winner of the Grand Jury Prize at the 1986 Sundance Film Festival. When sultry teen Connie (<a href=\"http://www.netflix.com/RoleDisplay/Laura_Dern/23978\">Laura Dern</a>) discovers her sexuality, the object of her affection isn't someone her age but rather the much older, mysterious Arnold Friend (<a href=\"http://www.netflix.com/RoleDisplay/Treat_Williams/99725\">Treat Williams</a>) -- who may not have the purest intentions. ", @title.synopsis
       end
     end
   end

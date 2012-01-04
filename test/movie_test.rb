@@ -4,7 +4,7 @@ class NetFlix::MovieTest < Test::Unit::TestCase
     @movie = NetFlix::Movie.new(load_fixture_file('movies.xml'))
   end
   context "rating" do
-    should "be the rating of the movie" do 
+    should "be the rating of the movie" do
       assert_equal @movie.rating, 'PG'
     end
   end
@@ -17,9 +17,10 @@ class NetFlix::MovieTest < Test::Unit::TestCase
 
   context "directors" do
     should "be the an array with the name of a director" do
-      mock_next_response("http://api.netflix.com/catalog/titles/movies/60001220/directors", 'directors.xml' ) 
+      mock_next_response("http://api.netflix.com/catalog/titles/movies/60001220/directors", 'directors.xml')
       assert_equal [ "Steven Spielberg" ], @movie.directors
     end
+
     context "element missing" do
       should "be an empty array" do
         movie_xml = Nokogiri.parse(load_fixture_file('movies.xml'))
@@ -37,7 +38,7 @@ class NetFlix::MovieTest < Test::Unit::TestCase
     end
     should "be an array of actor names" do
       ['Roy Scheider','Richard Dreyfuss'].each do |actor|
-        assert @movie.actors.include?(actor) 
+        assert @movie.actors.include?(actor)
       end
     end
   end

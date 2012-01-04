@@ -3,11 +3,13 @@ module NetFlix
 
     RESERVED_CHARACTERS = /[^A-Za-z0-9\-\._~]/
 
+    autoload :HashWithIndifferentAccess, 'active_support/hash_with_indifferent_access'
+
     has_value :http_method, :default => 'GET'
     has_value :url, :default => 'http://api.netflix.com/catalog/titles/index'
     has_value :parameters, :klass => HashWithIndifferentAccess, :default => {}
     has_value :cache_options, :default => {}
-    
+
     def self.default_cache_options
       {
         :cache => 600,    # 10 minutes  After this time fetch new data
@@ -17,7 +19,7 @@ module NetFlix
         :timeout => 5     # 5 seconds   API response timeout
       }
     end
-    
+
 
     def ordered_keys
       parameters.keys.sort
@@ -42,7 +44,7 @@ module NetFlix
 
     def send
       merged_cache_options = self.class.default_cache_options.merge(cache_options)
-      APICache.get(target.to_s, merged_cache_options ) do
+      APICache.get(target.to_s, merged_cache_options) do
         authenticator.sign!
         log
         Net::HTTP.get(target)
@@ -76,7 +78,7 @@ module NetFlix
     end
 
     def validate_http_method
-      errors << "HTTP method must be POST or GET, but I got #{http_method}" unless ['POST', 'GET'].include? http_method 
+      errors << "HTTP method must be POST or GET, but I got #{http_method}" unless ['POST', 'GET'].include? http_method
     end
   end
 end

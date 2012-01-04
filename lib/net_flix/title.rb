@@ -14,7 +14,11 @@ module NetFlix
 
     # not every title has a director!
     def directors
-      @directors ||= ( Nokogiri.parse(fetch_link('directors')) / "/people/person/name/text()" ).to_a.map(&:to_s)
+      @directors ||= if link?('directors')
+        (Nokogiri.parse(fetch_link('directors')) / "/people/person/name/text()").to_a.map(&:to_s)
+      else
+        []
+      end
     end
 
     def rating
@@ -35,11 +39,7 @@ module NetFlix
     end
 
     def synopsis
-      @synopsis ||= begin 
-        Crack::XML.parse(fetch_link('synopsis'))['synopsis']
-      rescue
-        ''
-      end
+      @synopsis ||= Crack::XML.parse(fetch_link('synopsis'))['synopsis']
     end
 
     def id
@@ -63,8 +63,12 @@ module NetFlix
 
     private
     def fetch_link(title)
-      link_url = ( @xdoc / "//catalog_title/link[@title='#{title}']/@href" ).to_s
-      NetFlix::Request.new(:url => link_url ).send unless link_url.blank?
+      link_url = (@xdoc / "//catalog_title/link[@title='#{title}']/@href").to_s
+      NetFlix::Request.new(:url => link_url).send
+    end
+
+    def link?(link_name)
+      (@xdoc / "//catalog_title/link[@title='#{link_name}']/@href").present?
     end
 
     class << self

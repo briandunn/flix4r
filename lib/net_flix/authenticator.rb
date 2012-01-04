@@ -1,3 +1,5 @@
+require 'base64'
+
 module NetFlix
   class Authenticator < Valuable
 
@@ -13,14 +15,14 @@ module NetFlix
       @timestamp=stamp
     end
 
-    def timestamp 
+    def timestamp
       @timestamp ||= Time.now.to_i
     end
 
     def key
       credentials.key
     end
-    
+
     def secret
       credentials.secret
     end
@@ -31,7 +33,7 @@ module NetFlix
 
     def signature_base_string
       add_authentication_parameters!
-      [request.http_method, encoded_url, encoded_parameters].join('&') 
+      [request.http_method, encoded_url, encoded_parameters].join('&')
     end
 
     def signature_key

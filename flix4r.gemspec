@@ -63,14 +63,17 @@ Gem::Specification.new do |s|
      "test/title_test.rb"
   ]
 
-  s.add_dependency 'activesupport', '~> 3.1.3'
-  s.add_dependency 'ruby-openid',   '~> 2.1.8'
-  s.add_dependency 'ruby-hmac',     '~> 0.4.0'
+  s.add_dependency 'activesupport'
+  s.add_dependency 'i18n'
+  s.add_dependency 'api_cache',     '~> 0.2.3'
+  s.add_dependency 'crack',         '~> 0.3.1'
   s.add_dependency 'json',          '~> 1.6.3'
   s.add_dependency 'nokogiri',      '~> 1.5.0'
-  s.add_dependency 'crack',         '~> 0.3.1'
-  s.add_dependency 'api_cache',     '~> 0.2.3'
+  s.add_dependency 'ruby-hmac',     '~> 0.4.0'
+  s.add_dependency 'ruby-openid',   '~> 2.1.8'
+  s.add_development_dependency 'mocha'
   s.add_development_dependency 'rake'
+  s.add_development_dependency 'shoulda'
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
