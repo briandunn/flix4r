@@ -3,6 +3,8 @@ module NetFlix
 
     RESERVED_CHARACTERS = /[^A-Za-z0-9\-\._~]/
 
+    autoload :HashWithIndifferentAccess, 'active_support/hash_with_indifferent_access'
+
     has_value :http_method, :default => 'GET'
     has_value :url, :default => 'http://api.netflix.com/catalog/titles/index'
     has_value :parameters, :klass => HashWithIndifferentAccess, :default => {}

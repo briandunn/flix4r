@@ -1,4 +1,9 @@
 module NetFlix
+  autoload :Title         ,'net_flix/title'
+  autoload :Request       ,'net_flix/request'
+  autoload :Authenticator ,'net_flix/authenticator'
+  autoload :Credentials   ,'net_flix/credentials'
+  autoload :Movie         ,'net_flix/movie'
 
   class << self
 	  
