@@ -1,16 +1,13 @@
 require 'rubygems'
-require 'test/unit'
 require 'shoulda'
-require 'ruby-debug'
+require 'test/unit'
 require 'mocha'
-
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-$LOAD_PATH.unshift(File.dirname(__FILE__))
+require 'pathname'
 require 'flix4r'
 
 class Test::Unit::TestCase
-  def load_fixture_file( file_name )
-    File.open( File.join(File.dirname(__FILE__), 'fixtures', file_name )).read
+  def load_fixture_file(file_name)
+    Pathname.new(__FILE__).join('../fixtures', file_name).read
   end
 
   def mock_next_response(url, fixture_file_name)
