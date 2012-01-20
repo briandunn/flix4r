@@ -17,7 +17,7 @@ class TitleTest < Test::Unit::TestCase
     should "return an array of titles" do
       NetFlix::Request.expects(:new).returns(stub( :send => load_fixture_file('autocomplete.xml' )))
 
-      assert_equal ["Love Wrecked", "Lovesickness", "Loverboy" ], NetFlix::Title.autocomplete( 'ignored' ) 
+      assert_equal ["Love Wrecked", "Lovesickness", "Loverboy" ], NetFlix::Title.autocomplete( 'ignored' )
     end
   end
 
@@ -27,11 +27,11 @@ class TitleTest < Test::Unit::TestCase
     end
     context "title" do
       should "be the title of the movie" do
-        assert_equal @title.title, 'Jaws' 
+        assert_equal @title.title, 'Jaws'
       end
     end
     context "images" do
-      should "return an image url for the sizes small, medium, and large" do 
+      should "return an image url for the sizes small, medium, and large" do
         %w{ small medium large }.each do |size|
           assert_nothing_raised 'valid url' do
             URI::parse(@title.images[size])

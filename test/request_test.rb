@@ -19,7 +19,7 @@ class NetflixTest < Test::Unit::TestCase
     request = NetFlix::Request.new(:parameters => {'key1' => '2'})
     NetFlix::Authenticator.expects(:new).with(has_entry(:request, request)).returns(stub_everything)
     Net::HTTP.stubs(:get)
-    
+
     request.send
   end
 
@@ -35,5 +35,4 @@ class NetflixTest < Test::Unit::TestCase
       assert_match /with%20spaces/, request.target.to_s
     end
   end
-
 end

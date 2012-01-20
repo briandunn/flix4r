@@ -6,11 +6,11 @@ module NetFlix
   autoload :Movie         ,'net_flix/movie'
 
   class << self
-	  
+
     def credentials
-      @credentials ||= NetFlix::Credentials.from_file 
+      @credentials ||= NetFlix::Credentials.from_file
     end
-  
+
     def logfile
       File.join( File.dirname(__FILE__), '..', 'log', 'netflix.log' )
     end
@@ -19,11 +19,11 @@ module NetFlix
       logdir = File.join( File.dirname(__FILE__), '..', 'log' )
       Dir.mkdir(logdir) unless File.exists? logdir
 
-      Logger.new( logfile ) 
+      Logger.new( logfile )
     end
 
     def logger
-      @logger ||= defined?(Rails) ? RAILS_DEFAULT_LOGGER : create_logger 
+      @logger ||= defined?(Rails) ? RAILS_DEFAULT_LOGGER : create_logger
     end
 
     def log_requests?
@@ -31,11 +31,11 @@ module NetFlix
     end
 
     def log_requests= bool=true
-      @log_requests = bool 
+      @log_requests = bool
     end
 
     def log(message)
-      NetFlix.logger.info("[#{Time.now.to_i}] #{message}") if log_requests?  
-    end  
+      NetFlix.logger.info("[#{Time.now.to_i}] #{message}") if log_requests?
+    end
   end # class methods
 end

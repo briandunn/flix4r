@@ -13,15 +13,15 @@ class Test::Unit::TestCase
     File.open( File.join(File.dirname(__FILE__), 'fixtures', file_name )).read
   end
 
-  def mock_next_response( url, fixture_file_name )
-    NetFlix::Request.expects(:new).with(:url => url ).returns(stub(:send => load_fixture_file(fixture_file_name)))
+  def mock_next_response(url, fixture_file_name)
+    NetFlix::Request.expects(:new).with(:url => url).returns(stub(:send => load_fixture_file(fixture_file_name)))
   end
 end
+
 module Test::Unit::Assertions
-	
   def assert_included(items, needle, custom_message = nil)
     raise 'First argument for assert_included must be an array' unless items.is_a? Array
-    
+
     message = build_message custom_message, "Expected #{items.inspect} to contain #{needle.inspect} but it did not."
 
     assert_block message do
@@ -36,5 +36,4 @@ module Test::Unit::Assertions
       not items.include? needle
     end
   end
-
 end

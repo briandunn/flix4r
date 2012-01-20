@@ -13,8 +13,8 @@ class FormatBuilderTest < Test::Unit::TestCase
   def test_that_format_links_are_followed
 
     NetFlix::Request.expects(:new).with(:url => 'http://api.netflix.com/catalog/titles/movies/60031755/format_availability').returns(stub_everything(:send => '<xml/>'))
-    
-    FormatBuilder.from_movie( title_with_link_to_formats )    
+
+    FormatBuilder.from_movie( title_with_link_to_formats )
   end
 
   def test_that_cast_list_contains_current_formats
@@ -46,10 +46,10 @@ class FormatBuilderTest < Test::Unit::TestCase
 
   def title_with_formats
 
-    xml = %|<title_index_item>  
+    xml = %|<title_index_item>
               <delivery_formats>
                 <availability available_from="#{(Time.now + 2.days).to_i}">
-                  <category 
+                  <category
  label="future_format" term="future_format"></category>
 		</availability>
 		<availability available_from="#{(Time.now - 2.days).to_i}">
@@ -59,7 +59,7 @@ class FormatBuilderTest < Test::Unit::TestCase
                   <category scheme="http://api.netflix.com/categories/title_formats" label="no_availability_format" term="no_availability_format"></category>
                 </availability>
               </delivery_formats>
-           </title_index_item>  
+           </title_index_item>
        |
 
     Nokogiri.XML(xml).search('//title_index_item')
