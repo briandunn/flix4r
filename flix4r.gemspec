@@ -68,7 +68,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'api_cache',     '~> 0.2.3'
   s.add_dependency 'crack',         '~> 0.3.1'
   s.add_dependency 'json',          '~> 1.6.3'
-  s.add_dependency 'nokogiri',      '~> 1.5.0'
+  s.add_dependency 'nokogiri',      '>= 1.5', '< 1.12'
   s.add_dependency 'ruby-hmac',     '~> 0.4.0'
   s.add_dependency 'ruby-openid',   '~> 2.1.8'
   s.add_development_dependency 'mocha'
