@@ -64,7 +64,7 @@ Gem::Specification.new do |s|
   ]
 
   s.add_dependency 'activesupport', '~> 3.1.3'
-  s.add_dependency 'i18n',          '~> 0.6.0'
+  s.add_dependency 'i18n',          '>= 0.6', '< 1.13'
   s.add_dependency 'api_cache',     '~> 0.2.3'
   s.add_dependency 'crack',         '~> 0.3.1'
   s.add_dependency 'json',          '~> 1.6.3'
