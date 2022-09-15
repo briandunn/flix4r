@@ -70,7 +70,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'json',          '~> 1.6.3'
   s.add_dependency 'nokogiri',      '>= 1.5', '< 1.14'
   s.add_dependency 'ruby-hmac',     '~> 0.4.0'
-  s.add_dependency 'ruby-openid',   '~> 2.1.8'
+  s.add_dependency 'ruby-openid',   '>= 2.1.8', '< 2.10.0'
   s.add_development_dependency 'mocha'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'shoulda'
