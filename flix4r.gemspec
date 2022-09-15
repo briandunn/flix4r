@@ -63,7 +63,7 @@ Gem::Specification.new do |s|
      "test/title_test.rb"
   ]
 
-  s.add_dependency 'activesupport', '~> 3.1.3'
+  s.add_dependency 'activesupport', '>= 3.1.3', '< 7.1.0'
   s.add_dependency 'i18n',          '~> 0.6.0'
   s.add_dependency 'api_cache',     '~> 0.2.3'
   s.add_dependency 'crack',         '~> 0.3.1'
